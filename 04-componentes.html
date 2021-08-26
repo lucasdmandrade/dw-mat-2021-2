@@ -25,6 +25,16 @@
             font-family: "Calibri", Arial, sans-serif;
             margin-bottom: 10px;
         }
+        .warning-title{
+            color: white;
+            background-color:red;
+            text-align: center
+        }
+        .warning-body{
+            color: black; 
+            background-color: yellow;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -36,14 +46,38 @@
     <script type='text/babel'>
 
     //Função recebe 2 props e retorna elemento JSX
+    //Arrow function recebe as props como parametros de um objeto
     const Greeting = ({msg, name}) => <div className="greet">{msg}, {name}!</div>
 
     const greeting1 = Greeting({msg: 'Boa noite', name: 'Lucas'})
 
+    const Message = props =>  <div className="msg"{...props} />
+
+    const Warning = props => {
+        return (
+            <>
+            <div className="warning-title">Aviso</div>
+            <div className="warning-body" {...props} />
+            </>
+        )
+    }
+
+    let frase = 'Cuidado! Cão bravo.'
+
     const container = 
-        <div>
+    <> {/*Fragment */}
             {greeting1}
-        </div>
+            {Greeting({msg: "Olá", name: "Mundo"})}
+            <Greeting msg="Caramba" name="React" />
+            <p>Isto é um paragrafo </p>
+            <hr />
+            <Message id="mensagem1" title="Mensagem de boas vindas">Seja bem vindo!</Message>
+            <Message>Mensagem simples</Message>
+            <Message children="Outra mensagem." />
+            <Message>{frase}</Message>
+            <hr />
+            <Warning id="warning1">Não beba àlcool gel</Warning>
+        </>
 
     ReactDOM.render(container, document.getElementById('root'))
 

@@ -47,3 +47,66 @@ const fatorial2 = n => {
 }
 
 console.log(fatorial(5), fatorial2(5))
+
+//Criando função
+function calc(num1, num2, operacao='sum'){
+    let resultado 
+
+    switch (operacao) {
+        //soma
+        case 'sum':
+            resultado = num1 + num2
+        break;
+
+        //multiplicação
+        case 'mult':
+            resultado = num1 * num2
+        break;
+
+        //divisão 
+        case 'div':
+            resultado = num1 / num2
+        break;
+
+        //subtração
+        case 'sub':
+            resultado = num1 - num2
+        break;
+    }
+    return resultado
+}
+
+console.log(calc(5, 15, 'mult'))
+
+//Array pra ser passado(teste)
+let brasil = ['Acre', 'Alagoas', 'Amapá']
+
+//Novo array
+let estadosBrasil = []
+
+//Rodando array base 
+for(let i = 0; i < brasil.length; i++ ){
+
+    //Adicionando ao array novo 
+    estadosBrasil[i] = {
+        id: i,
+        estado: brasil[i]
+    }
+}
+console.log(estadosBrasil)
+
+//Vetor base
+let frutas = ['Maçã', 'Uva', 'Banana', 'Morango', 'Manga']
+
+//Vetor pra receber frutas que iniciam com 'M'
+let frutas_inicio_m = []
+
+//Rodando vetor base
+for( let i = 0; i < frutas.length; i++){
+    //Condição para adicionar no segundo vetor
+    if( frutas[i].slice(0, 1) == 'M' ){
+        //Pushando para a ultima posição do vetor novo independente do valor de I
+        frutas_inicio_m.push(frutas[i])
+    }
+}
+console.log(frutas_inicio_m)
