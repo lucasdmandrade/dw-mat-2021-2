@@ -18,13 +18,36 @@
     <script type='text/babel'>
 
         const MeuForm = () => {
+
+            //Variaveis de estado 
+            //Mantem o valor mesmo quando o estado do componente é alterado e o componente é redesenhado 
+            //Variaveis de estado são criadas com a função: React.useState() e seu parametro é o valor inicial da vairavel
+            //Essa função retorna um vetor com 2 elementos
+            //1° A variavel de estado propriamente dita(seu valor)
+            //2° Uma função que devera ser usada para atualizar o valor da variavel de estado 
+            const [nome, setNome] = React.useState('')
+
+            const handleChange = event => {
+                // nome = document.getElementById('campo-nome').value 
+                // Acesso direto
+                // nome = event.target.value   
+                // Acesso indireto        
+                setNome(event.target.value)
+                // Modo JS puro de modificar o conteúdo de um elemento        
+                // com o valor de uma variável        
+                // document.getElementById('debug').textContent = nome.toUpperCase()      
+            }
+            const handleSubmit = event => {
+                alert(`Olá, ${nome}!`)
+            }
+
             return (
-                <form>
+                <form onSubmit={handleSubmit}>
                     {/* Em JSX o atributo HTML for é escrito como: htmlFor
                 Apenas for ja é uma palavra reservada */}
                     <label htmlFor='campo-nome'>Informe seu nome: </label> <br />
-                    <input id='campo-nome' /> <br />
-                    <div id='debug'></div>
+                    <input id='campo-nome' onChange={handleChange} /> <br />
+                    <div id='debug'>{nome.toUpperCase()}</div>
                     <button type='submit'>Enviar</button>
                 </form>
             )

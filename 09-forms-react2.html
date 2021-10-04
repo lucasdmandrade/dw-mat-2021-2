@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type='text/babel'>
+
+        const MeuForm = () => {
+
+            const [info, setInfo] = React.useState('Nenhuma Informação')
+            const [nome, setNome] = React.useState('')
+            const [num1, setNum1] = React.useState('')
+            const [num2, setNum2] = React.useState('')
+            //const [soma, setSoma] = React.useState(0)
+
+            const handleInputChange = event => {
+                if(event.target.id === 'nome'){
+                    setInfo(`Voce alterou o Nome (${event.target.value})`)
+                    setNome(event.target.value.toUpperCase())
+                }
+                else if(event.target.id === 'num1'){
+                    setInfo(`Voce alterou o primeiro numero: ${event.target.value}`)
+                    setNum1(event.target.value)
+                }else{
+                    setInfo(`Voce alterou o segundo numero: ${event.target.value}`)
+                    setNum2(event.target.value)
+                }
+                //setSoma(Number(num1) + Number(num2))
+            }
+
+            return(
+                <form>
+                    <label htmlFor='nome'> Nome: </label>
+                    <input id='nome' value={nome} onChange={handleInputChange}/> <br/>
+                    <label htmlFor='num1'>Primeiro numero: </label>
+                    {/*
+                        Componente controlado:
+                    Quando um componente possui uma variavel de estado associada a ele 
+                    que é atualizada onChange e depois retorna o valor ao componente 
+                    */}
+                    <input id='num1' type='number' value={num1} onChange={handleInputChange}/> <br/>
+                    <label htmlFor='num2'>Segundo numero: </label>
+                    <input id='num2' type='number' value={num2} onChange={handleInputChange}/> <br/>
+                    <label htmlFor='soma'>Soma: </label>
+                    <input id='soma' type='number' value={Number(num1) + Number(num2)} readOnly/> <br/>
+                    <p>{info}</p>
+                </form>
+            )
+
+        }
+
+        ReactDOM.render(<MeuForm />, document.getElementById('root'))
+
+    </script>
+</body>
+
+</html>
